@@ -4,7 +4,7 @@ import userContext from '../user/userContext';
 
 const NoteState = (props) => {
     const { user } = useContext(userContext);
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_DB_URL;
     const headers = {
         "Content-type": "application/json",
         "auth-token": user.authToken,
@@ -13,6 +13,7 @@ const NoteState = (props) => {
 
     //Fetch Notes
     const fetchNotes = () => {
+        console.log(host);
         return new Promise(async (resolve, reject) => {
             const response = await fetch(`${host}/api/notes/fetchAllNotes`, {
                 method: "GET",

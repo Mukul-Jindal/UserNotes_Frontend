@@ -17,7 +17,7 @@ import { useState } from 'react';
 function App() {
   //Setting the Alert
   const [alert, setAlert] = useState(null);
-  const [status, setStatus] = useState('Login');
+  const [status, setStatus] = useState(localStorage.getItem('token') ? 'Logout' : 'Login');
   const showAlert = (message, type) => {
     setAlert({
       message: message,
@@ -33,14 +33,14 @@ function App() {
       <UserState>
         <NoteState>
           <Router>
-            <Navbar status={status}/>
+            <Navbar status={status} />
             <Alert alert={alert} />
             <div className="container">
               <Routes>
-                <Route path='/' element={<Home showAlert={showAlert}/>} />
-                <Route path='/about' element={<About showAlert={showAlert}/>} />
-                <Route path='/login' element={<Login setStatus={setStatus} showAlert={showAlert}/>} />
-                <Route path='/signup' element={<SignUp setStatus={setStatus} showAlert={showAlert}/>} />
+                <Route path='/' element={<Home showAlert={showAlert} />} />
+                <Route path='/about' element={<About showAlert={showAlert} />} />
+                <Route path='/login' element={<Login setStatus={setStatus} showAlert={showAlert} />} />
+                <Route path='/signup' element={<SignUp setStatus={setStatus} showAlert={showAlert} />} />
               </Routes>
             </div>
           </Router>

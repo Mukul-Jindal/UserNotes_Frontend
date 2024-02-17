@@ -4,7 +4,7 @@ import userContext from "./userContext";
 
 export default function UserState(props) {
     const [user, setUser] = useState({ authToken: localStorage.getItem('token') });
-    const host = "http://localhost:5000";
+    const host = process.env.REACT_APP_DB_URL;
     const headers = {
         'content-type': 'application/json',
     }
